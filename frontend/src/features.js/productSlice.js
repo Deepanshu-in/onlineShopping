@@ -19,9 +19,7 @@ export const productsFetch = createAsyncThunk(
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {
-    
-  },
+  reducers: {},
   extraReducers: {
     [productsFetch.pending]: (state, action) => {
       state.status = "pending";
@@ -38,6 +36,6 @@ const productsSlice = createSlice({
   },
 });
 
-
+// export const {handleBtn}=productsSlice.actions
 
 export default productsSlice.reducer;

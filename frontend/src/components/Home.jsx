@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+// import { useHistory } from "react-router-dom";
 import { useGetAllProductsQuery } from "../features.js/productsApi";
+import {useDispatch } from 'react-redux'
+import { handleAddToCart} from "../features.js/cartSlice";
 const Home = () => {
   const { data, error, isLoading } = useGetAllProductsQuery();
-  // const [cartData,setCartData]=useState([]);
-  // const handleAddToCart=(product)=>{
-  //   setCartData((prev)=>[{...prev},product]);
-  // }
+  // const history=useHistory();
+  const dispatch=useDispatch()
   return (
     <div className="home-container">
       {isLoading ? (
-        <p>Lodaing....</p>
+        <p>Loading....</p>
       ) : error ? (
         <p>An error occured....</p>
       ) : (
@@ -24,8 +25,8 @@ const Home = () => {
                     <span>{product.desc}</span>
                     <span className="price">₹ {product.price}</span>
                   </div>
-                  <button onClick={() => handleAddToCart(product)}>
-                    Add To Cart
+                  <button onClick={() => {dispatch(handleAddToCart(product));}}>
+                    Add to Cart
                   </button>
                 </div>
               ))}
